@@ -56,6 +56,8 @@ public class DoctorController {
 public String query(@RequestParam(defaultValue = "1") Integer pageNum,
                     @RequestParam(defaultValue = "8") Integer pageSize) throws JsonProcessingException {
 
+    HashMap map = new HashMap<>();
+
     // 创建分页对象
     Page<Doctor> page = new Page<>(pageNum, pageSize);
 
@@ -73,9 +75,9 @@ public String query(@RequestParam(defaultValue = "1") Integer pageNum,
     for (Doctor doctor:pageInfoList){
         doctorSummaryList.add(new DoctorSummary(doctor.getHostId(),doctor.getName(),doctor.getPhone(),doctor.getImage(),doctor.getMajor()));
     }
-
-    // 返回医生不敏感信息的信息
-    return JsonTool.writeValueAsString(doctorSummaryList);
+    map.put("list",doctorSummaryList);
+    map.put("total",total);
+    return JsonTool.writeValueAsString(map);
 }
 
 
@@ -84,6 +86,8 @@ public String query(@RequestParam(defaultValue = "1") Integer pageNum,
     public String SerchByName(@RequestParam("name")String name,
                               @RequestParam(defaultValue = "1") Integer pageNum,
                               @RequestParam(defaultValue = "8") Integer pageSize) throws JsonProcessingException {
+
+        HashMap map = new HashMap<>();
 //        创建分页对象
         Page<Doctor> page = new Page<>(pageNum,pageSize);
 //        查询模块
@@ -98,7 +102,10 @@ public String query(@RequestParam(defaultValue = "1") Integer pageNum,
         for (Doctor doctor:list){
             doctorSummaryList.add(new DoctorSummary(doctor.getHostId(),doctor.getName(),doctor.getPhone(),doctor.getImage(),doctor.getMajor()));
         }
-        return JsonTool.writeValueAsString(doctorSummaryList);
+
+        map.put("list",doctorSummaryList);
+        map.put("total",iPage.getTotal());
+        return JsonTool.writeValueAsString(map);
     }
 
 

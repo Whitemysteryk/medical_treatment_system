@@ -32,8 +32,13 @@ export default new Router({
           component: () => import('@/view/UserInfoList')
         },
         {
-          path:'registration',
-          name:'registration',
+          path: 'doctorList',//   --> /Layout/doctorlist
+          name: 'doctorList',
+          component: () => import('@/view/DoctorInfoList')
+        },
+        {
+          path: 'registration',//   --> /Layout/doctorlist
+          name: 'registration',
           component: () => import('@/view/RegisterList')
         }
       ]

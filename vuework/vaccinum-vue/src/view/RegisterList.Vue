@@ -59,7 +59,7 @@
                 layout="sizes, prev, pager, next" :total="tableData.length">
             </el-pagination>
         </div>
-
+``
     </div>
 </template>
 <script>
@@ -125,7 +125,7 @@ export default {
 
 //  Vue的生命周期周期
     created() {
-    // 在访问网页时候就进行get请求请求所有挂号记录
+    // 在访问该模块时候就进行get请求请求所有挂号记录
     this.query()
     },
 
